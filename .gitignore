@@ -1,0 +1,7 @@
+/external
+/scripts
+
+# Checkpoint files
+*.pt
+*checkpoint*.pt
+gotrack_checkpoint.pt
