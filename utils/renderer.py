@@ -4,20 +4,21 @@
 # pyre-strict
 
 
-from enum import Enum
-from typing import Any, Dict, Optional, Sequence, Tuple
 import os
 import time
+from enum import Enum
+from typing import Any, Dict, Optional, Sequence, Tuple
 
 import numpy as np
-import trimesh
 import pyrender
-from utils import renderer_base, structs, torch_helpers, logging
+import trimesh
+from utils import logging, renderer_base, structs, torch_helpers
 
 
 logger = logging.get_logger(__name__)
 os.environ["DISPLAY"] = ":1"
-os.environ["PYOPENGL_PLATFORM"] = "egl"
+# Use OSMesa for software rendering (works in containers without GPU access)
+os.environ["PYOPENGL_PLATFORM"] = "osmesa"
 
 
 class RenderType(Enum):

@@ -81,7 +81,6 @@ class DinoFeatureExtractor(nn.Module):
         self.model: torch.nn.Module = dinov2_backbones.__dict__[self.model_base_name](
             pretrained=True
         )
-        self.model = torch.hub.load("facebookresearch/dinov2", self.model_base_name)
 
         # DINOv2 is trained with stride 14.
         if self.stride != 14:
@@ -364,9 +363,9 @@ class DinoFeatureExtractor(nn.Module):
             return model
 
         stride = nn_utils._pair(stride)
-        assert all((patch_size // s_) * s_ == patch_size for s_ in stride), (
-            f"stride {stride} should divide patch_size {patch_size}"
-        )
+        assert all(
+            (patch_size // s_) * s_ == patch_size for s_ in stride
+        ), f"stride {stride} should divide patch_size {patch_size}"
 
         # Fix the stride.
         model.patch_embed.proj.stride = stride

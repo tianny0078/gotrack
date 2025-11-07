@@ -3,15 +3,21 @@
 
 # pyre-strict
 
+# Set OpenGL platform to OSMesa before any imports
+# This must be done before PyOpenGL/pyrender is imported
 import os
+
+os.environ["PYOPENGL_PLATFORM"] = "osmesa"
+
+import warnings
 from pathlib import Path
+
 import hydra
-from omegaconf import DictConfig, OmegaConf
 from hydra.utils import instantiate
+from omegaconf import DictConfig, OmegaConf
 from torch.utils.data import DataLoader
 from utils import data_util, net_util  # noqa: F401
 from utils.logging import get_logger
-import warnings
 
 warnings.filterwarnings("ignore")
 logger = get_logger(__name__)

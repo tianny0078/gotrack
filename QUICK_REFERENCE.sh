@@ -1,0 +1,37 @@
+#!/bin/bash
+# Quick Reference - GoTrack Container Commands
+# Save this for future reference
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+echo "=========================================="
+echo "GoTrack Container Quick Reference"
+echo "=========================================="
+echo ""
+echo "1. Start Container (from host):"
+echo "   cd <gotrack_repo>/gotrack/docker"
+echo "   bash run_container.sh"
+echo ""
+echo "2. First-Time Setup (inside container):"
+echo "   bash <gotrack_repo>/gotrack/container_setup.sh"
+echo "   OR from gotrack/gotrack directory:"
+echo "   bash ./container_setup.sh"
+echo ""
+echo "3. Download DINOv2 Weights (if needed, on host):"
+echo "   wget -O ~/.cache/torch/hub/checkpoints/dinov2_vits14_reg4_pretrain.pth \\"
+echo "     https://dl.fbaipublicfiles.com/dinov2/dinov2_vits14/dinov2_vits14_reg4_pretrain.pth"
+echo "   (Add 'with-proxy' before wget if you need proxy access)"
+echo ""
+echo "4. Run GoTrack Inference (inside container):"
+echo "   cd <gotrack_repo>/gotrack"
+echo "   export DATASET_NAME=lmo"
+echo "   export COARSE_POSE_METHOD=foundpose"
+echo "   python -m scripts.inference_gotrack \\"
+echo "     mode=pose_refinement \\"
+echo "     dataset_name=\$DATASET_NAME \\"
+echo "     coarse_pose_method=\$COARSE_POSE_METHOD"
+echo ""
+echo "=========================================="
+echo "For detailed information, see SETUP_SUMMARY.md"
+echo "=========================================="
